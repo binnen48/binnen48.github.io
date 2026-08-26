@@ -8,22 +8,40 @@
       var el = form.elements[name];
       return el ? String(el.value || "").trim() : "";
     };
-    var bedrijfsnaam = get("bedrijfsnaam");
-    var stad = get("stad");
-    var whatsapp = get("whatsapp");
-    var omschrijving = get("omschrijving");
+
+    var isNl = (document.documentElement.lang || "").toLowerCase().indexOf("nl") === 0;
+    var name = get("bedrijfsnaam") || get("business");
+    var city = get("stad") || get("city");
+    var contact = get("whatsapp") || get("contact");
+    var description = get("omschrijving") || get("description");
     var social = get("social");
 
-    var subject = "Aanvraag Binnen48 — " + bedrijfsnaam + " (" + stad + ")";
-    var body = [
-      "Aanvraag Binnen48",
-      "",
-      "Bedrijfsnaam: " + bedrijfsnaam,
-      "Stad: " + stad,
-      "WhatsApp: " + whatsapp,
-      "Omschrijving: " + omschrijving,
-      "Instagram/Facebook: " + (social || "—")
-    ].join("\n");
+    var subject, body, thanks;
+    if (isNl) {
+      subject = "Aanvraag Binnen48 — " + name + " (" + city + ")";
+      body = [
+        "Aanvraag Binnen48",
+        "",
+        "Bedrijfsnaam: " + name,
+        "Stad: " + city,
+        "WhatsApp: " + contact,
+        "Omschrijving: " + description,
+        "Instagram/Facebook: " + (social || "—")
+      ].join("\n");
+      thanks = "bedankt.html";
+    } else {
+      subject = "Binnen48 request — " + name + " (" + city + ")";
+      body = [
+        "Binnen48 request",
+        "",
+        "Business: " + name,
+        "City: " + city,
+        "WhatsApp / email: " + contact,
+        "Description: " + description,
+        "Instagram / Facebook: " + (social || "—")
+      ].join("\n");
+      thanks = "thanks.html";
+    }
 
     var mailto =
       "mailto:chiefofstaff1880@agentmail.to" +
@@ -38,7 +56,7 @@
     a.remove();
 
     window.setTimeout(function () {
-      window.location.href = "bedankt.html";
+      window.location.href = thanks;
     }, 500);
   });
 })();

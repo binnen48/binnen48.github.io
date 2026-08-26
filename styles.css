@@ -90,6 +90,33 @@ a:hover { color: var(--rust-deep); }
 }
 .top-cta:hover { background: var(--ink); color: var(--paper); }
 
+.top-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+.lang {
+  display: flex;
+  align-items: baseline;
+  gap: 0.32rem;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+.lang a {
+  color: var(--muted);
+  text-decoration: none;
+}
+.lang a[aria-current="page"] {
+  color: var(--ink);
+}
+.lang a:hover { color: var(--rust); }
+.lang .sep {
+  color: var(--line);
+  font-weight: 500;
+}
+
 /* Hero */
 .hero {
   padding: 2.4rem 0 2.8rem;
