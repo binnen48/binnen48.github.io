@@ -197,7 +197,7 @@ h1 em {
 .btn-block { width: 100%; }
 
 /* Sections */
-section { padding: 2.4rem 0; scroll-margin-top: 4.2rem; }
+section { padding: 2.4rem 0; scroll-margin-top: 5.6rem; }
 .rule-top { border-top: 1px solid var(--line); }
 h2 {
   font-family: var(--serif);
@@ -457,3 +457,45 @@ footer a { color: var(--ink); }
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
 }
+
+
+/* Also row — extra offers */
+.also-bar {
+  border-top: 1px solid var(--line);
+  background: var(--paper-2);
+}
+.also-inner {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.35rem 0.95rem;
+  padding: 0.42rem var(--pad);
+  max-width: 46rem;
+  margin: 0 auto;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+.also-inner .label {
+  color: var(--muted);
+  font-weight: 500;
+  letter-spacing: 0.1em;
+}
+.also-inner a {
+  color: var(--ink);
+  text-decoration: none;
+}
+.also-inner a:hover { color: var(--rust); }
+.also-inner a[aria-current="page"] {
+  color: var(--rust);
+}
+
+.honest-box {
+  margin-top: 1.4rem;
+  padding: 1.05rem 1.1rem 1.1rem;
+  border: 1px dashed var(--rust);
+  background: var(--cream);
+}
+.honest-box p { margin: 0; }
+.honest-box p + p { margin-top: 0.65rem; }
