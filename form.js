@@ -71,7 +71,7 @@
     }
 
     var mailto =
-      "mailto:chiefofstaff1880@agentmail.to" +
+      "mailto:binnen48@agentmail.to" +
       "?subject=" + encodeURIComponent(subject) +
       "&body=" + encodeURIComponent(body);
 
