@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  <url>
+    <loc>https://binnen48.github.io/</loc>
+    <changefreq>weekly</changefreq>
+    <xhtml:link rel="alternate" hreflang="en" href="https://binnen48.github.io/"/>
+    <xhtml:link rel="alternate" hreflang="nl" href="https://binnen48.github.io/nl.html"/>
+  </url>
+  <url>
+    <loc>https://binnen48.github.io/nl.html</loc>
+    <changefreq>weekly</changefreq>
+    <xhtml:link rel="alternate" hreflang="en" href="https://binnen48.github.io/"/>
+    <xhtml:link rel="alternate" hreflang="nl" href="https://binnen48.github.io/nl.html"/>
+  </url>
+  <url>
+    <loc>https://binnen48.github.io/kit.html</loc>
+    <changefreq>weekly</changefreq>
+    <xhtml:link rel="alternate" hreflang="en" href="https://binnen48.github.io/kit.html"/>
+    <xhtml:link rel="alternate" hreflang="nl" href="https://binnen48.github.io/kit-nl.html"/>
+  </url>
+  <url>
+    <loc>https://binnen48.github.io/kit-nl.html</loc>
+    <changefreq>weekly</changefreq>
+    <xhtml:link rel="alternate" hreflang="en" href="https://binnen48.github.io/kit.html"/>
+    <xhtml:link rel="alternate" hreflang="nl" href="https://binnen48.github.io/kit-nl.html"/>
+  </url>
+  <url>
+    <loc>https://binnen48.github.io/operator.html</loc>
+    <changefreq>weekly</changefreq>
+  </url>
+  <url>
+    <loc>https://binnen48.github.io/pay.html</loc>
+    <changefreq>weekly</changefreq>
+  </url>
+  <url>
+    <loc>https://binnen48.github.io/demo/</loc>
+    <changefreq>weekly</changefreq>
+  </url>
+</urlset>
