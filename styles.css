@@ -169,6 +169,11 @@ h1 em {
   color: var(--muted);
   max-width: 22rem;
 }
+.hero-actions .note {
+  flex-basis: 100%;
+  max-width: 28rem;
+  margin: 0;
+}
 
 /* Buttons */
 .btn {
