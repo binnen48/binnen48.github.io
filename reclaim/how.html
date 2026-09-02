@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#f0ebe1">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,700&family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,500;1,9..144,600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../styles.css">
+  <link rel="stylesheet" href="../slip/slip.css">
+  <link rel="canonical" href="https://binnen48.github.io/reclaim/how.html">
+  <title>Close empty Solana token accounts and reclaim rent</title>
+  <meta name="description" content="How to find empty SPL token accounts and close them in Phantom, Solflare, or the Solana CLI. No seed to a website.">
+  <meta property="og:title" content="Close empty Solana token accounts and reclaim rent">
+  <meta property="og:description" content="Empty ATAs still hold rent. Close them in your wallet. Optional CSV if you want a list first.">
+  <meta property="og:url" content="https://binnen48.github.io/reclaim/how.html">
+</head>
+<body>
+  <header class="top">
+    <div class="top-inner">
+      <a class="mark" href="https://binnen48.github.io/">Binnen<span>48</span></a>
+      <div class="top-actions">
+        <a class="top-cta" href="./">Open Reclaim</a>
+      </div>
+    </div>
+  </header>
+  <main>
+    <section class="slip-hero">
+      <div class="wrap">
+        <p class="eyebrow">How-to <b>·</b> Solana <b>·</b> rent</p>
+        <h1>Close empty token accounts.<br><em>Get the rent back.</em></h1>
+        <p class="lede">Every SPL token account is a rent-exempt account (~0.002 SOL). If the balance is zero, you can close it and the rent returns to the owner. Do this in a wallet you control. Never paste a seed into a website.</p>
+      </div>
+    </section>
+    <section class="rule-top">
+      <div class="wrap">
+        <p class="section-kicker">The recipe</p>
+        <h2>Find empties. Then close.</h2>
+        <ol class="steps">
+          <li>
+            <span class="num">01</span>
+            <div>
+              <h3>List token accounts</h3>
+              <p><code>getTokenAccountsByOwner</code> on the Token program and Token-2022. Empty means <code>tokenAmount.amount</code> is <code>0</code>. Those rows still have <code>lamports</code>.</p>
+            </div>
+          </li>
+          <li>
+            <span class="num">02</span>
+            <div>
+              <h3>Close in a wallet</h3>
+              <p>Phantom: Settings → Manage accounts / Close token accounts (wording moves). Solflare has a similar unused-account closer. You sign. The site should never see your key.</p>
+            </div>
+          </li>
+          <li>
+            <span class="num">03</span>
+            <div>
+              <h3>Or the CLI</h3>
+              <p><code>spl-token accounts</code> then <code>spl-token close &lt;token-account&gt;</code> for each empty ATA. Destination for rent is the owner wallet.</p>
+            </div>
+          </li>
+        </ol>
+        <pre style="overflow:auto;padding:1rem;background:#1c1916;color:#f0ebe1;border-radius:8px;font-size:0.82rem;line-height:1.45">curl https://api.mainnet-beta.solana.com -H 'content-type: application/json' -d '{
+  "jsonrpc":"2.0","id":1,"method":"getTokenAccountsByOwner",
+  "params":["ADDRESS",{"programId":"TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA"},{"encoding":"jsonParsed"}]
+}'</pre>
+        <p class="note">Do not close accounts you still need. Some apps recreate ATAs and you pay rent again. Frozen or delegated accounts may refuse close.</p>
+      </div>
+    </section>
+    <section class="rule-top">
+      <div class="wrap">
+        <p class="section-kicker">Without a script</p>
+        <h2>Preview in the browser.</h2>
+        <p>Reclaim runs the scan in your tab and shows empty count plus reclaimable SOL. The CSV of every empty ATA is 8 USDC on Solana, matched on-chain. No email, no seed.</p>
+        <p style="margin-top:1rem"><a class="btn" href="./">Open the scan</a></p>
+      </div>
+    </section>
+  </main>
+  <footer>
+    <div class="wrap">
+      <p>A Binnen48 how-to. Also: <a href="../slip/export.html">export a wallet to CSV</a>.</p>
+    </div>
+  </footer>
+</body>
+</html>

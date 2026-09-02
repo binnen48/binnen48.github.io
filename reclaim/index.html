@@ -8,17 +8,17 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,700&family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,500;1,9..144,600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../styles.css">
-  <link rel="stylesheet" href="slip.css">
-  <link rel="canonical" href="https://binnen48.github.io/slip/">
-  <title>Slip — Paste a Solana wallet. Pay 8 USDC. Get a CSV.</title>
-  <meta name="description" content="Slip dumps a Solana wallet into a CSV. Preview free from public RPC. Pay 8 USDC on Solana. Download in the same tab. No email.">
-  <meta property="og:title" content="Slip — Paste a Solana wallet. Pay 8 USDC. Get a CSV.">
-  <meta property="og:description" content="Preview free. Pay 8 USDC on Solana. Download the CSV in the same tab. No email, no account.">
-  <meta property="og:url" content="https://binnen48.github.io/slip/">
+  <link rel="stylesheet" href="../slip/slip.css">
+  <link rel="canonical" href="https://binnen48.github.io/reclaim/">
+  <title>Reclaim — Empty Solana token accounts as CSV. 8 USDC.</title>
+  <meta name="description" content="Scan a Solana wallet for empty token accounts still holding rent. Preview is free. Pay 8 USDC for the CSV. No wallet connect, no seed.">
+  <meta property="og:title" content="Reclaim — Empty Solana token accounts as CSV. 8 USDC.">
+  <meta property="og:description" content="Preview reclaimable SOL from empty ATAs. Pay 8 USDC on Solana. Download the CSV in the same tab.">
+  <meta property="og:url" content="https://binnen48.github.io/reclaim/">
   <meta property="og:type" content="website">
   <meta name="twitter:card" content="summary">
-  <meta name="twitter:title" content="Slip — 8 USDC Solana wallet CSV">
-  <meta name="twitter:description" content="Paste a wallet. Pay 8 USDC. Get a CSV. No email.">
+  <meta name="twitter:title" content="Reclaim — 8 USDC empty token account CSV">
+  <meta name="twitter:description" content="Paste a wallet. See empty ATAs. Pay 8 USDC. Get a CSV.">
 </head>
 <body>
   <header class="top">
@@ -31,32 +31,29 @@
     <div class="also-bar">
       <nav class="also-inner" aria-label="Offers">
         <a href="https://binnen48.github.io/">Home</a>
-        <a href="../kit.html">Kit $29</a>
-        <a href="../operator.html">Operator $149</a>
+        <a href="../slip/">Slip 8 USDC</a>
+        <a href="./" aria-current="page">Reclaim 8 USDC</a>
         <a href="../pay.html">Pay</a>
-        <a href="./" aria-current="page">Slip 8 USDC</a>
-        <a href="../reclaim/">Reclaim 8 USDC</a>
       </nav>
     </div>
   </header>
   <main>
     <section class="slip-hero">
       <div class="wrap">
-        <p class="eyebrow">Slip <b>·</b> Solana <b>·</b> 8 USDC</p>
-        <h1>Paste a Solana wallet.<br><em>Pay 8 USDC. Get a CSV.</em></h1>
-        <p class="lede">Slip reads a public Solana address in your browser and dumps balances plus recent signatures into a CSV. Preview is free. The full file costs 8 USDC on Solana — unique to the last four digits, so we can match your payment with no email and no account. Prefer to script it? <a href="export.html">How to export with public RPC</a>.</p>
-        <p class="note">This is for people who already hold USDC. If you run a shop and want a one-pager, that is <a href="https://binnen48.github.io/">Binnen48</a>.</p>
+        <p class="eyebrow">Reclaim <b>·</b> Solana <b>·</b> 8 USDC</p>
+        <h1>Empty token accounts.<br><em>CSV of rent you can close.</em></h1>
+        <p class="lede">Airdrops leave leftover token accounts. Each empty one still holds rent (about 0.002 SOL). Reclaim lists them from public RPC in your browser. Preview is free. The full CSV is 8 USDC on Solana. We never ask for a key. Closing is on you — <a href="how.html">how to close them</a>.</p>
       </div>
     </section>
     <section class="rule-top" id="lookup">
       <div class="wrap">
         <p class="section-kicker">1 · Address</p>
-        <h2>Wallet to dump.</h2>
+        <h2>Wallet to scan.</h2>
         <form class="lookup" id="lookup-form">
           <label for="wallet">Solana address</label>
           <div class="lookup-row">
             <input id="wallet" name="wallet" type="text" spellcheck="false" autocomplete="off" autocapitalize="off" placeholder="Paste a pubkey" required>
-            <button class="btn" id="lookup-btn" type="submit">Preview</button>
+            <button class="btn" id="lookup-btn" type="submit">Scan</button>
           </div>
         </form>
         <p class="status" id="lookup-status" role="status"></p>
@@ -65,18 +62,19 @@
     <section class="rule-top preview" id="preview" hidden>
       <div class="wrap">
         <p class="section-kicker">2 · Free preview</p>
-        <h2>What public RPC sees.</h2>
+        <h2>Empty accounts on this wallet.</h2>
         <div class="kv">
-          <div><span class="k">SOL</span><span class="v" id="sol-bal">—</span></div>
-          <div><span class="k">USDC</span><span class="v" id="usdc-bal">—</span></div>
+          <div><span class="k">Token accounts</span><span class="v" id="acc-count">—</span></div>
+          <div><span class="k">Empty</span><span class="v" id="empty-count">—</span></div>
+          <div><span class="k">Reclaimable</span><span class="v" id="rent-sol">—</span></div>
         </div>
-        <p class="note" style="margin-top:1rem">Last ~10 signatures. The paid CSV has token accounts and up to 50 signatures.</p>
+        <p class="note" style="margin-top:1rem">First empty accounts. The paid CSV has every empty ATA with mint, program, and lamports.</p>
         <div style="overflow:auto">
           <table class="sig-table">
             <thead>
-              <tr><th>Signature</th><th>Slot</th><th>Time</th></tr>
+              <tr><th>Token account</th><th>Mint</th><th>Rent (SOL)</th></tr>
             </thead>
-            <tbody id="sig-body"></tbody>
+            <tbody id="empty-body"></tbody>
           </table>
         </div>
       </div>
@@ -110,7 +108,7 @@
       <div class="wrap">
         <p class="section-kicker">4 · Download</p>
         <h2>Your CSV is ready.</h2>
-        <p class="note">Token accounts from getTokenAccountsByOwner, native SOL, and up to 50 recent signatures with block time.</p>
+        <p class="note">Every empty token account: pubkey, mint, owner, program, lamports, reclaimable SOL.</p>
         <p style="margin-top:1rem"><button type="button" class="btn" id="dl-btn">Download CSV</button></p>
         <p class="status" id="dl-status" role="status"></p>
       </div>
@@ -119,7 +117,7 @@
       <div class="wrap">
         <p class="section-kicker">Honest</p>
         <div class="honest-box">
-          <p>Not tax advice. Not a portfolio app. Public RPC data, fetched in your browser. We never ask for a key or a seed.</p>
+          <p>We do not close accounts for you and we never ask for a seed. The CSV is a list. You close them in Phantom, Solflare, or with the CLI.</p>
           <p>Payment is on-chain USDC on Solana (mint EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v) and irreversible. Wrong chain, wrong mint, or a rounded amount we cannot match: gone. Support: <a href="mailto:binnen48@agentmail.to">binnen48@agentmail.to</a>.</p>
         </div>
       </div>
@@ -127,17 +125,16 @@
   </main>
   <footer>
     <div class="wrap">
-      <p class="foot-name">Slip</p>
-      <p>A Binnen48 tool. Paste a wallet. Pay 8 USDC. Get a CSV.</p>
+      <p class="foot-name">Reclaim</p>
+      <p>A Binnen48 tool. Empty token accounts as CSV. 8 USDC.</p>
       <nav>
         <a href="https://binnen48.github.io/">Binnen48 home</a>
+        <a href="../slip/">Slip</a>
+        <a href="how.html">How to close</a>
         <a href="mailto:binnen48@agentmail.to">binnen48@agentmail.to</a>
-        <a href="../reclaim/">Reclaim empty accounts</a>
-        <a href="../pay.html">Other pay amounts</a>
       </nav>
-      <p class="foot-dirs" style="margin-top:0.6rem;font-size:0.85rem"><a href="https://twelve.tools">twelve.tools</a> · <a href="https://fazier.com">Fazier</a> · <a href="https://madeonsol.com">MadeOnSol</a></p>
     </div>
   </footer>
-  <script src="slip.js"></script>
+  <script src="reclaim.js"></script>
 </body>
 </html>
