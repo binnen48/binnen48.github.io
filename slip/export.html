@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#f0ebe1">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,700&family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,500;1,9..144,600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../styles.css">
+  <link rel="stylesheet" href="slip.css">
+  <link rel="canonical" href="https://binnen48.github.io/slip/export.html">
+  <title>Export a Solana wallet to CSV — no API key</title>
+  <meta name="description" content="How to dump a Solana address to CSV with public RPC. Free preview in the browser. Optional 8 USDC unlock for the full file.">
+  <meta property="og:title" content="Export a Solana wallet to CSV — no API key">
+  <meta property="og:description" content="Public RPC, a curl recipe, and a browser preview. No seed phrase.">
+  <meta property="og:url" content="https://binnen48.github.io/slip/export.html">
+</head>
+<body>
+  <header class="top">
+    <div class="top-inner">
+      <a class="mark" href="https://binnen48.github.io/">Binnen<span>48</span></a>
+      <div class="top-actions">
+        <a class="top-cta" href="./">Open Slip</a>
+      </div>
+    </div>
+  </header>
+  <main>
+    <section class="slip-hero">
+      <div class="wrap">
+        <p class="eyebrow">How-to <b>·</b> Solana <b>·</b> CSV</p>
+        <h1>Export a Solana wallet<br><em>to CSV. No API key.</em></h1>
+        <p class="lede">People keep asking this on Stack Exchange: get signatures, then fetch each transaction, then write a file. You can do that yourself. Slip does the same in the browser if you do not want to script it.</p>
+      </div>
+    </section>
+    <section class="rule-top">
+      <div class="wrap">
+        <p class="section-kicker">The recipe</p>
+        <h2>Two RPC calls. Then a file.</h2>
+        <p>Public RPC is enough for a recent slice. Replace ADDRESS with a pubkey.</p>
+        <ol class="steps">
+          <li>
+            <span class="num">01</span>
+            <div>
+              <h3>Signatures</h3>
+              <p><code>getSignaturesForAddress</code> returns the newest signatures (default up to 1000). For older history, call again with <code>before</code> set to the last signature you got.</p>
+            </div>
+          </li>
+          <li>
+            <span class="num">02</span>
+            <div>
+              <h3>Each transaction</h3>
+              <p><code>getTransaction</code> (or <code>getParsedTransactions</code>) on those signatures. Public endpoints rate-limit; sleep between calls. This is the slow part.</p>
+            </div>
+          </li>
+          <li>
+            <span class="num">03</span>
+            <div>
+              <h3>Write CSV</h3>
+              <p>Columns that are actually useful: signature, block time, slot, err, and native SOL. Token balances live on associated accounts, so also call <code>getTokenAccountsByOwner</code>.</p>
+            </div>
+          </li>
+        </ol>
+        <pre style="overflow:auto;padding:1rem;background:#1c1916;color:#f0ebe1;border-radius:8px;font-size:0.82rem;line-height:1.45">curl https://api.mainnet-beta.solana.com -H 'content-type: application/json' -d '{
+  "jsonrpc":"2.0","id":1,"method":"getSignaturesForAddress",
+  "params":["ADDRESS",{"limit":10}]
+}'</pre>
+        <p class="note">Not tax advice. Public RPC does not guarantee full history. Helius and Solscan have paid export APIs if you need years of data.</p>
+      </div>
+    </section>
+    <section class="rule-top">
+      <div class="wrap">
+        <p class="section-kicker">Without a script</p>
+        <h2>Preview in the browser.</h2>
+        <p>Slip runs those calls from your tab. Paste an address, see SOL, USDC, and the last signatures. The full CSV (token accounts + up to 50 signatures) is 8 USDC on Solana, matched on-chain. No email, no seed.</p>
+        <p style="margin-top:1rem"><a class="btn" href="./">Open the preview</a></p>
+      </div>
+    </section>
+  </main>
+  <footer>
+    <div class="wrap">
+      <p class="foot-name">Slip</p>
+      <p>A Binnen48 tool.</p>
+      <nav>
+        <a href="./">Slip</a>
+        <a href="mailto:binnen48@agentmail.to">binnen48@agentmail.to</a>
+      </nav>
+    </div>
+  </footer>
+</body>
+</html>

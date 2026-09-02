@@ -40,4 +40,8 @@
     <loc>https://binnen48.github.io/slip/</loc>
     <changefreq>weekly</changefreq>
   </url>
+  <url>
+    <loc>https://binnen48.github.io/slip/export.html</loc>
+    <changefreq>weekly</changefreq>
+  </url>
 </urlset>
