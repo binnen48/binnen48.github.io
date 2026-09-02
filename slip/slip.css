@@ -1,0 +1,129 @@
+/* Slip — same paper as Binnen48, tighter for a tool */
+.slip-hero { padding: 2rem 0 1.4rem; }
+.slip-hero h1 { font-size: clamp(2.1rem, 10vw, 3.1rem); }
+.slip-hero .lede { max-width: 32rem; }
+
+.lookup {
+  display: grid;
+  gap: 0.7rem;
+}
+.lookup-row {
+  display: grid;
+  gap: 0.65rem;
+}
+@media (min-width: 640px) {
+  .lookup-row {
+    grid-template-columns: 1fr auto;
+    align-items: end;
+  }
+}
+
+.status {
+  font-size: 0.95rem;
+  color: var(--muted);
+  margin: 0.7rem 0 0;
+  min-height: 1.4em;
+}
+.status.err { color: var(--rust-deep); }
+.status.ok { color: var(--ok); }
+
+.preview, .pay, .unlock {
+  margin-top: 1.4rem;
+}
+.preview[hidden], .pay[hidden], .unlock[hidden], .qr-wrap[hidden] { display: none; }
+
+.kv {
+  display: grid;
+  gap: 0.55rem;
+  margin: 1rem 0 0;
+}
+.kv div {
+  display: grid;
+  grid-template-columns: 7.5rem 1fr;
+  gap: 0.6rem;
+  padding: 0.55rem 0;
+  border-bottom: 1px solid var(--line);
+  font-size: 0.95rem;
+}
+.kv dt, .kv .k {
+  color: var(--muted);
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  padding-top: 0.15rem;
+}
+.kv .v { word-break: break-word; font-variant-numeric: tabular-nums; }
+
+.sig-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 0.9rem;
+  font-size: 0.82rem;
+}
+.sig-table th {
+  text-align: left;
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted);
+  padding: 0.45rem 0.4rem 0.45rem 0;
+  border-bottom: 1px solid var(--line);
+}
+.sig-table td {
+  padding: 0.5rem 0.4rem 0.5rem 0;
+  border-bottom: 1px solid var(--line);
+  vertical-align: top;
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 0.78rem;
+  word-break: break-all;
+}
+.sig-table td.time { font-family: var(--sans); color: var(--muted); word-break: normal; }
+
+.amount-xl {
+  font-family: var(--serif);
+  font-size: clamp(2.2rem, 9vw, 3.2rem);
+  letter-spacing: -0.04em;
+  line-height: 0.95;
+  margin: 0.2rem 0 0.35rem;
+  font-variant-numeric: lining-nums;
+}
+.amount-xl small {
+  font-size: 0.42em;
+  color: var(--muted);
+  font-style: italic;
+  letter-spacing: -0.02em;
+}
+
+.mono {
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 0.88rem;
+  word-break: break-all;
+}
+
+.copy-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+  align-items: center;
+  margin-top: 0.55rem;
+}
+.copy-row .btn { min-height: 2.4rem; padding: 0.4rem 0.8rem; font-size: 0.88rem; }
+
+.qr-wrap {
+  margin: 1rem 0 0.2rem;
+}
+.qr-wrap canvas, .qr-wrap img {
+  background: var(--cream);
+  padding: 0.55rem;
+  border: 1px solid var(--line);
+}
+
+.pay-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.65rem;
+  margin-top: 1.1rem;
+}
+
+.hidden { display: none !important; }
