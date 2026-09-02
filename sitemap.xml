@@ -33,6 +33,10 @@
     <changefreq>weekly</changefreq>
   </url>
   <url>
+    <loc>https://binnen48.github.io/jobs.html</loc>
+    <changefreq>weekly</changefreq>
+  </url>
+  <url>
     <loc>https://binnen48.github.io/demo/</loc>
     <changefreq>weekly</changefreq>
   </url>
