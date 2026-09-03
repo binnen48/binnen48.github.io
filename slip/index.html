@@ -10,15 +10,8 @@
   <link rel="stylesheet" href="../styles.css">
   <link rel="stylesheet" href="slip.css">
   <link rel="canonical" href="https://binnen48.github.io/slip/">
-  <title>Slip — Paste a Solana wallet. Pay 8 USDC. Get a CSV.</title>
-  <meta name="description" content="Slip dumps a Solana wallet into a CSV. Preview free from public RPC. Pay 8 USDC on Solana. Download in the same tab. No email.">
-  <meta property="og:title" content="Slip — Paste a Solana wallet. Pay 8 USDC. Get a CSV.">
-  <meta property="og:description" content="Preview free. Pay 8 USDC on Solana. Download the CSV in the same tab. No email, no account.">
-  <meta property="og:url" content="https://binnen48.github.io/slip/">
-  <meta property="og:type" content="website">
-  <meta name="twitter:card" content="summary">
-  <meta name="twitter:title" content="Slip — 8 USDC Solana wallet CSV">
-  <meta name="twitter:description" content="Paste a wallet. Pay 8 USDC. Get a CSV. No email.">
+  <title>Slip — Not offered</title>
+  <meta name="description" content="Slip is not offered. Token-holder CSVs already exist. Do not send USDC.">
 </head>
 <body>
   <header class="top">
@@ -29,116 +22,38 @@
       </div>
     </div>
     <div class="also-bar">
-      <nav class="also-inner" aria-label="Offers">
+      <nav class="also-inner" aria-label="Pages">
         <a href="https://binnen48.github.io/">Home</a>
-        <a href="../kit.html">Kit $29</a>
-        <a href="../operator.html">Operator $149</a>
-        <a href="../pay.html">Pay</a>
-        <a href="./" aria-current="page">Slip 8 USDC</a>
-        <a href="../reclaim/">Reclaim 8 USDC</a>
-        <a href="../jobs.html">Jobs 12 USDC</a>
+        <a href="./" aria-current="page">Slip</a>
+        <a href="../reclaim/">Reclaim</a>
+        <a href="../jobs.html">Jobs</a>
+        <a href="export.html">How-to</a>
       </nav>
     </div>
   </header>
   <main>
     <section class="slip-hero">
       <div class="wrap">
-        <p class="eyebrow">Slip <b>·</b> Solana <b>·</b> 8 USDC</p>
-        <h1>Paste a Solana wallet.<br><em>Pay 8 USDC. Get a CSV.</em></h1>
-        <p class="lede">Slip reads a public Solana address in your browser and dumps balances plus recent signatures into a CSV. Preview is free. The full file costs 8 USDC on Solana — unique to the last four digits, so we can match your payment with no email and no account. Prefer to script it? <a href="export.html">How to export with public RPC</a>.</p>
-        <p class="note">This is for people who already hold USDC. If you run a shop and want a one-pager, that is <a href="https://binnen48.github.io/">Binnen48</a>.</p>
-      </div>
-    </section>
-    <section class="rule-top" id="lookup">
-      <div class="wrap">
-        <p class="section-kicker">1 · Address</p>
-        <h2>Wallet to dump.</h2>
-        <form class="lookup" id="lookup-form">
-          <label for="wallet">Solana address</label>
-          <div class="lookup-row">
-            <input id="wallet" name="wallet" type="text" spellcheck="false" autocomplete="off" autocapitalize="off" placeholder="Paste a pubkey" required>
-            <button class="btn" id="lookup-btn" type="submit">Preview</button>
-          </div>
-        </form>
-        <p class="status" id="lookup-status" role="status"></p>
-      </div>
-    </section>
-    <section class="rule-top preview" id="preview" hidden>
-      <div class="wrap">
-        <p class="section-kicker">2 · Free preview</p>
-        <h2>What public RPC sees.</h2>
-        <div class="kv">
-          <div><span class="k">SOL</span><span class="v" id="sol-bal">—</span></div>
-          <div><span class="k">USDC</span><span class="v" id="usdc-bal">—</span></div>
-        </div>
-        <p class="note" style="margin-top:1rem">Last ~10 signatures. The paid CSV has token accounts and up to 50 signatures.</p>
-        <div style="overflow:auto">
-          <table class="sig-table">
-            <thead>
-              <tr><th>Signature</th><th>Slot</th><th>Time</th></tr>
-            </thead>
-            <tbody id="sig-body"></tbody>
-          </table>
-        </div>
-      </div>
-    </section>
-    <section class="rule-top pay" id="pay" hidden>
-      <div class="wrap">
-        <p class="section-kicker">3 · Paywall</p>
-        <h2>Send this exact amount.</h2>
-        <div class="ticket">
-          <p class="amount-xl" id="pay-amount">8.00XXXX</p>
-          <p><small>USDC on Solana · last four digits are your receipt</small></p>
-          <p class="honest">Do not send a round 8.000000. The extra digits are how we tell your payment from the next one. Wrong mint or wrong chain = gone.</p>
-        </div>
-        <p class="section-kicker" style="margin-top:1.4rem">Receive address</p>
-        <p class="mono" id="pay-address">CvoF6ga7Qiip4iT1EBVcwoHhKxwfKegLZyWvyqQSQk7L</p>
-        <div class="copy-row">
-          <button type="button" class="btn btn-ghost" id="copy-amount">Copy amount</button>
-          <button type="button" class="btn btn-ghost" id="copy-address">Copy address</button>
-        </div>
-        <div class="qr-wrap" id="qr-wrap" hidden>
-          <canvas id="qr" width="168" height="168" aria-label="Solana Pay QR"></canvas>
-        </div>
-        <div class="pay-actions">
-          <a class="btn" id="solana-pay" href="#">Open Solana Pay</a>
-          <button type="button" class="btn btn-ghost" id="check-btn">Check payment</button>
-        </div>
-        <p class="status" id="pay-status" role="status">After you send, tap check. We also poll every 10 seconds.</p>
-      </div>
-    </section>
-    <section class="rule-top unlock" id="unlock" hidden>
-      <div class="wrap">
-        <p class="section-kicker">4 · Download</p>
-        <h2>Your CSV is ready.</h2>
-        <p class="note">Token accounts from getTokenAccountsByOwner, native SOL, and up to 50 recent signatures with block time.</p>
-        <p style="margin-top:1rem"><button type="button" class="btn" id="dl-btn">Download CSV</button></p>
-        <p class="status" id="dl-status" role="status"></p>
-      </div>
-    </section>
-    <section class="rule-top" id="honest">
-      <div class="wrap">
-        <p class="section-kicker">Honest</p>
+        <p class="eyebrow">Slip <b>·</b> taken down</p>
+        <h1>Not offered</h1>
+        <p class="lede">This was a paid wrapper of something others already ship. It is taken down. Do not send USDC.</p>
+        <p class="note">Token-holder CSVs already exist (e.g. Smithii Token Snapshot).</p>
         <div class="honest-box">
-          <p>Not tax advice. Not a portfolio app. Public RPC data, fetched in your browser. We never ask for a key or a seed.</p>
-          <p>Payment is on-chain USDC on Solana (mint EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v) and irreversible. Wrong chain, wrong mint, or a rounded amount we cannot match: gone. Support: <a href="mailto:binnen48@agentmail.to">binnen48@agentmail.to</a>.</p>
+          <p>Support: <a href="mailto:binnen48@agentmail.to">binnen48@agentmail.to</a> only for existing paid customers (there are none).</p>
         </div>
+        <p class="note" style="margin-top:1.2rem">Free public note: <a href="export.html">how to export with public RPC</a>. That is not a paid product.</p>
       </div>
     </section>
   </main>
   <footer>
     <div class="wrap">
       <p class="foot-name">Slip</p>
-      <p>A Binnen48 tool. Paste a wallet. Pay 8 USDC. Get a CSV.</p>
+      <p>Not offered.</p>
       <nav>
         <a href="https://binnen48.github.io/">Binnen48 home</a>
         <a href="mailto:binnen48@agentmail.to">binnen48@agentmail.to</a>
-        <a href="../reclaim/">Reclaim empty accounts</a>
-        <a href="../pay.html">Other pay amounts</a>
       </nav>
-      <p class="foot-dirs" style="margin-top:0.6rem;font-size:0.85rem"><a href="https://twelve.tools">twelve.tools</a> · <a href="https://fazier.com">Fazier</a> · <a href="https://madeonsol.com">MadeOnSol</a></p>
     </div>
   </footer>
-  <script src="slip.js"></script>
 </body>
 </html>

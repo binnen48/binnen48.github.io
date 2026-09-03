@@ -10,15 +10,8 @@
   <link rel="stylesheet" href="../styles.css">
   <link rel="stylesheet" href="../slip/slip.css">
   <link rel="canonical" href="https://binnen48.github.io/reclaim/">
-  <title>Reclaim — Empty Solana token accounts as CSV. 8 USDC.</title>
-  <meta name="description" content="Scan a Solana wallet for empty token accounts still holding rent. Preview is free. Pay 8 USDC for the CSV. No wallet connect, no seed.">
-  <meta property="og:title" content="Reclaim — Empty Solana token accounts as CSV. 8 USDC.">
-  <meta property="og:description" content="Preview reclaimable SOL from empty ATAs. Pay 8 USDC on Solana. Download the CSV in the same tab.">
-  <meta property="og:url" content="https://binnen48.github.io/reclaim/">
-  <meta property="og:type" content="website">
-  <meta name="twitter:card" content="summary">
-  <meta name="twitter:title" content="Reclaim — 8 USDC empty token account CSV">
-  <meta name="twitter:description" content="Paste a wallet. See empty ATAs. Pay 8 USDC. Get a CSV.">
+  <title>Reclaim — Not offered</title>
+  <meta name="description" content="Reclaim is not offered. Wallets already close empty token accounts. Do not send USDC.">
 </head>
 <body>
   <header class="top">
@@ -29,114 +22,38 @@
       </div>
     </div>
     <div class="also-bar">
-      <nav class="also-inner" aria-label="Offers">
+      <nav class="also-inner" aria-label="Pages">
         <a href="https://binnen48.github.io/">Home</a>
-        <a href="../slip/">Slip 8 USDC</a>
-        <a href="./" aria-current="page">Reclaim 8 USDC</a>
-        <a href="../jobs.html">Jobs 12 USDC</a>
-        <a href="../pay.html">Pay</a>
+        <a href="../slip/">Slip</a>
+        <a href="./" aria-current="page">Reclaim</a>
+        <a href="../jobs.html">Jobs</a>
+        <a href="how.html">How-to</a>
       </nav>
     </div>
   </header>
   <main>
     <section class="slip-hero">
       <div class="wrap">
-        <p class="eyebrow">Reclaim <b>·</b> Solana <b>·</b> 8 USDC</p>
-        <h1>Empty token accounts.<br><em>CSV of rent you can close.</em></h1>
-        <p class="lede">Airdrops leave leftover token accounts. Each empty one still holds rent (about 0.002 SOL). Reclaim lists them from public RPC in your browser. Preview is free. The full CSV is 8 USDC on Solana. We never ask for a key. Closing is on you — <a href="how.html">how to close them</a>.</p>
-      </div>
-    </section>
-    <section class="rule-top" id="lookup">
-      <div class="wrap">
-        <p class="section-kicker">1 · Address</p>
-        <h2>Wallet to scan.</h2>
-        <form class="lookup" id="lookup-form">
-          <label for="wallet">Solana address</label>
-          <div class="lookup-row">
-            <input id="wallet" name="wallet" type="text" spellcheck="false" autocomplete="off" autocapitalize="off" placeholder="Paste a pubkey" required>
-            <button class="btn" id="lookup-btn" type="submit">Scan</button>
-          </div>
-        </form>
-        <p class="status" id="lookup-status" role="status"></p>
-      </div>
-    </section>
-    <section class="rule-top preview" id="preview" hidden>
-      <div class="wrap">
-        <p class="section-kicker">2 · Free preview</p>
-        <h2>Empty accounts on this wallet.</h2>
-        <div class="kv">
-          <div><span class="k">Token accounts</span><span class="v" id="acc-count">—</span></div>
-          <div><span class="k">Empty</span><span class="v" id="empty-count">—</span></div>
-          <div><span class="k">Reclaimable</span><span class="v" id="rent-sol">—</span></div>
-        </div>
-        <p class="note" style="margin-top:1rem">First empty accounts. The paid CSV has every empty ATA with mint, program, and lamports.</p>
-        <div style="overflow:auto">
-          <table class="sig-table">
-            <thead>
-              <tr><th>Token account</th><th>Mint</th><th>Rent (SOL)</th></tr>
-            </thead>
-            <tbody id="empty-body"></tbody>
-          </table>
-        </div>
-      </div>
-    </section>
-    <section class="rule-top pay" id="pay" hidden>
-      <div class="wrap">
-        <p class="section-kicker">3 · Paywall</p>
-        <h2>Send this exact amount.</h2>
-        <div class="ticket">
-          <p class="amount-xl" id="pay-amount">8.00XXXX</p>
-          <p><small>USDC on Solana · last four digits are your receipt</small></p>
-          <p class="honest">Do not send a round 8.000000. The extra digits are how we tell your payment from the next one. Wrong mint or wrong chain = gone.</p>
-        </div>
-        <p class="section-kicker" style="margin-top:1.4rem">Receive address</p>
-        <p class="mono" id="pay-address">CvoF6ga7Qiip4iT1EBVcwoHhKxwfKegLZyWvyqQSQk7L</p>
-        <div class="copy-row">
-          <button type="button" class="btn btn-ghost" id="copy-amount">Copy amount</button>
-          <button type="button" class="btn btn-ghost" id="copy-address">Copy address</button>
-        </div>
-        <div class="qr-wrap" id="qr-wrap" hidden>
-          <canvas id="qr" width="168" height="168" aria-label="Solana Pay QR"></canvas>
-        </div>
-        <div class="pay-actions">
-          <a class="btn" id="solana-pay" href="#">Open Solana Pay</a>
-          <button type="button" class="btn btn-ghost" id="check-btn">Check payment</button>
-        </div>
-        <p class="status" id="pay-status" role="status">After you send, tap check. We also poll every 10 seconds.</p>
-      </div>
-    </section>
-    <section class="rule-top unlock" id="unlock" hidden>
-      <div class="wrap">
-        <p class="section-kicker">4 · Download</p>
-        <h2>Your CSV is ready.</h2>
-        <p class="note">Every empty token account: pubkey, mint, owner, program, lamports, reclaimable SOL.</p>
-        <p style="margin-top:1rem"><button type="button" class="btn" id="dl-btn">Download CSV</button></p>
-        <p class="status" id="dl-status" role="status"></p>
-      </div>
-    </section>
-    <section class="rule-top" id="honest">
-      <div class="wrap">
-        <p class="section-kicker">Honest</p>
+        <p class="eyebrow">Reclaim <b>·</b> taken down</p>
+        <h1>Not offered</h1>
+        <p class="lede">This was a paid wrapper of something others already ship. It is taken down. Do not send USDC.</p>
+        <p class="note">Wallets already close empty token accounts (Phantom / Solflare).</p>
         <div class="honest-box">
-          <p>We do not close accounts for you and we never ask for a seed. The CSV is a list. You close them in Phantom, Solflare, or with the CLI.</p>
-          <p>Payment is on-chain USDC on Solana (mint EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v) and irreversible. Wrong chain, wrong mint, or a rounded amount we cannot match: gone. Support: <a href="mailto:binnen48@agentmail.to">binnen48@agentmail.to</a>.</p>
+          <p>Support: <a href="mailto:binnen48@agentmail.to">binnen48@agentmail.to</a> only for existing paid customers (there are none).</p>
         </div>
+        <p class="note" style="margin-top:1.2rem">Free public note: <a href="how.html">how to close empty accounts</a>. That is not a paid product.</p>
       </div>
     </section>
   </main>
   <footer>
     <div class="wrap">
       <p class="foot-name">Reclaim</p>
-      <p>A Binnen48 tool. Empty token accounts as CSV. 8 USDC.</p>
+      <p>Not offered.</p>
       <nav>
         <a href="https://binnen48.github.io/">Binnen48 home</a>
-        <a href="../slip/">Slip</a>
-        <a href="how.html">How to close</a>
         <a href="mailto:binnen48@agentmail.to">binnen48@agentmail.to</a>
       </nav>
-      <p class="foot-dirs" style="margin-top:0.6rem;font-size:0.85rem"><a href="https://twelve.tools">twelve.tools</a></p>
     </div>
   </footer>
-  <script src="reclaim.js"></script>
 </body>
 </html>
